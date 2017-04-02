@@ -1,0 +1,25 @@
+{
+  "name": "execut/yii2-pages",
+  "description": "A pages manager for yii2",
+  "keywords": ["yii2 cms", "yii2 pages"],
+  "homepage": "https://github.com/execut/yii2-pages",
+  "type": "yii2-extension",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "eXeCUT"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "yiisoft/yii2": "@dev",
+    "execut/yii2-actions": "*",
+    "execut/yii2-migration": "*",
+    "execut/yii2-navigation": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "execut\\pages\\": ""
+    }
+  }
+}
