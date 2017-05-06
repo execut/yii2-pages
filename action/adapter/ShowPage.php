@@ -9,15 +9,13 @@ use execut\actions\action\Adapter;
 
 class ShowPage extends Adapter
 {
-    public $modelClass = null;
+//    public $modelClass = null;
     protected function _run()
     {
-        $class = $this->modelClass;
-        $model = $class::findById($this->actionParams->get['id']);
+//        $class = $this->modelClass;
+//        $class::initNavigationPagesById($this->actionParams->get['id']);
         return $this->getResponse([
-            'content' => [
-                'model' => $model
-            ],
+            'content' => [],
         ]);
     }
 }

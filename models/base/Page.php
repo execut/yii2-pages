@@ -22,6 +22,7 @@ use Yii;
  * @property string $text
  * @property string $alias
  *
+ * @property \execut\pages\models\MenuItem[] $menuItems
  * @property \execut\pages\models\Page $pagesPage
  * @property \execut\pages\models\Page[] $pages
  * @property string $aliasModel
@@ -75,6 +76,14 @@ abstract class Page extends \yii\db\ActiveRecord
             'text' => Yii::t('execut/pages', 'Text'),
             'alias' => Yii::t('execut/pages', 'Alias'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMenuItems()
+    {
+        return $this->hasMany(\execut\pages\models\MenuItem::className(), ['pages_page_id' => 'id']);
     }
 
     /**

@@ -9,6 +9,7 @@ use execut\crudFields\fields\Boolean;
 use execut\crudFields\fields\Date;
 use execut\crudFields\fields\Editor;
 use execut\crudFields\fields\HasOneRelation;
+use execut\crudFields\fields\HasOneSelect2;
 use execut\crudFields\fields\Id;
 use \execut\pages\models\base\Page as BasePage;
 use yii\helpers\ArrayHelper;
@@ -24,46 +25,28 @@ class Page extends BasePage
         return ArrayHelper::merge(
             parent::behaviors(),
             [
-                'navigation' => [
-                    'class' => \execut\navigation\Behavior::class,
-                ],
                 'fields' => [
                     'class' => Behavior::class,
+                    'plugins' => \yii::$app->getModule('pages')->getPageFieldsPlugins(),
                     'fields' => [
                         [
                             'class' => Id::class,
                             'attribute' => 'id',
                         ],
                         [
-                            'required' => true,
-                            'attribute' => 'name',
-                        ],
-                        [
-                            'class' => HasOneRelation::class,
+                            'class' => HasOneSelect2::class,
                             'attribute' => 'pages_page_id',
                             'url' => [
                                 '/pages/backend'
                             ],
                         ],
                         [
+                            'required' => true,
+                            'attribute' => 'name',
+                        ],
+                        [
                             'class' => Boolean::class,
                             'attribute' => 'visible',
-                        ],
-                        [
-                            'attribute' => 'header',
-                        ],
-                        [
-                            'attribute' => 'title',
-                        ],
-                        [
-                            'attribute' => 'description',
-                        ],
-                        [
-                            'attribute' => 'keywords',
-                        ],
-                        [
-                            'class' => Editor::class,
-                            'attribute' => 'text',
                         ],
                         [
                             'class' => Date::class,
@@ -76,44 +59,43 @@ class Page extends BasePage
                         [
                             'class' => Action::class,
                         ],
-                    ],
+                    ]
                 ],
                 # custom behaviors
             ]
         );
     }
 
-    public static function findById($id) {
-        $page = $currentPage = self::find()->andWhere(['id' => $id])->one();
-        $navigationPages = [];
+    public static function getNavigationPages($id) {
+        $result = [];
+        $page = self::find()->andWhere(['id' => $id])->one();
         do {
-            $navigationPage = $page->getNavigationPage();
-            $navigationPages[] = $navigationPage;
+            $currentPage = $page->getNavigationPage();
+            $result[] = $currentPage;
         } while ($page = $page->pagesPage);
-        $navigationPages = array_reverse($navigationPages);
-        $currentPage->getBehavior('navigation')->setPages($navigationPages);
 
-        return $currentPage;
+        return array_reverse($result);
     }
 
     public function getNavigationPage() {
-        $page = new \execut\navigation\Page([
-            'name' => $this->name,
-            'url' => [
-                '/pages/frontend',
-                'id' => $this->id,
-            ],
-        ]);
+        $page = new \execut\navigation\Page();
         $checkedAttributes = [
+            'name',
             'keywords',
             'title',
             'description',
             'header',
             'text',
         ];
+
+        $page->setUrl([
+            '/pages/frontend',
+            'id' => $this->id,
+        ]);
         foreach ($checkedAttributes as $attribute) {
             if (!empty($this->$attribute)) {
-                $page->$attribute = $this->$attribute;
+                $setter = 'set' . ucfirst($attribute);
+                $page->$setter($this->$attribute);
             }
         }
 

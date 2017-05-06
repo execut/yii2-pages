@@ -1,8 +1,6 @@
 <?php
 
 use execut\yii\migration\Migration;
-use execut\seo\MigrationHelper as SeoMigrationHelper;
-use execut\alias\MigrationHelper as AliasMigrationHelper;
 
 class m170401_190746_createBaseTable extends Migration
 {
@@ -12,15 +10,7 @@ class m170401_190746_createBaseTable extends Migration
             'name' => $this->string()->notNull(),
             'visible' => $this->boolean()->notNull()->defaultValue('true'),
         ]));
-        $pages = $i->table('pages_pages')->addForeignColumn('pages_pages');
-        $seoColumns = new SeoMigrationHelper([
-            'table' => $pages,
-        ]);
-        $seoColumns->attach();
-
-        $aliasColumns = new AliasMigrationHelper([
-            'table' => $pages,
-        ]);
-        $aliasColumns->attach();
+        $pages = $i->table('pages_pages');
+        $pages->addForeignColumn('pages_pages');
     }
 }
