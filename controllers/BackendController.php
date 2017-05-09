@@ -5,10 +5,25 @@
 namespace execut\pages\controllers;
 use execut\crud\params\Crud;
 use execut\pages\models\Page;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 
 class BackendController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
 
     public function actions()
     {

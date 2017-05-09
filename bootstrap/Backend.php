@@ -7,27 +7,27 @@ namespace execut\pages\bootstrap;
 
 use execut\navigation\Component;
 use execut\crud\navigation\Configurator;
-use execut\yii\Bootstrap;
-use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 
 class Backend extends Frontend
 {
-    public function getDefaultDepends()
-    {
-        return ArrayHelper::merge(parent::getDefaultDepends(), [
-            'bootstrap' => [
-                [
-                    'class' => Bootstrap::class,
-                ]
-            ],
-        ]);
-    }
-
     /**
      * @param \yii\base\Application $app
      */
     public function bootstrap($app)
     {
+        $this->bootstrapNavigation($app);
+    }
+
+    /**
+     * @param $app
+     */
+    protected function bootstrapNavigation($app)
+    {
+        if ($app->user->isGuest) {
+            return;
+        }
+
         /**
          * @var Component $navigation
          */
