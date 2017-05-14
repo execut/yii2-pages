@@ -99,6 +99,16 @@ class Page extends BasePage
             }
         }
 
+        $page->setTime(strtotime($this->getLastTime()));
+
         return $page;
+    }
+
+    public function getLastTime() {
+        if ($this->updated) {
+            return $this->updated;
+        }
+
+        return $this->created;
     }
 }

@@ -47,12 +47,14 @@ class Configurator implements \execut\navigation\Configurator
         foreach ($pages as $page) {
             $navigation->addPage($page);
         }
+
+        $navigation->initMetatags();
     }
 
     /**
      * @return string
      */
-    protected function getCurrentModule(): string
+    protected function getCurrentModule()
     {
         $currentModule = \Yii::$app->controller->module->id;
         return $currentModule;
