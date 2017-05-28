@@ -68,7 +68,11 @@ class Page extends BasePage
 
     public static function getNavigationPages($id) {
         $result = [];
-        $page = self::find()->andWhere(['id' => $id])->one();
+        $page = self::find()->andWhere(['id' => $id])->withParents()->isVisible()->one();
+        if (!$page) {
+            return [];
+        }
+
         do {
             $currentPage = $page->getNavigationPage();
             $result[] = $currentPage;
@@ -88,10 +92,7 @@ class Page extends BasePage
             'text',
         ];
 
-        $page->setUrl([
-            '/pages/frontend',
-            'id' => $this->id,
-        ]);
+        $page->setUrl($this->getUrl());
         foreach ($checkedAttributes as $attribute) {
             if (!empty($this->$attribute)) {
                 $setter = 'set' . ucfirst($attribute);
@@ -102,6 +103,13 @@ class Page extends BasePage
         $page->setTime(strtotime($this->getLastTime()));
 
         return $page;
+    }
+
+    public function getUrl() {
+        return [
+            '/pages/frontend',
+            'id' => $this->id,
+        ];
     }
 
     public function getLastTime() {

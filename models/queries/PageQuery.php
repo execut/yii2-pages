@@ -32,4 +32,14 @@ class PageQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function isVisible() {
+        $modelClass = $this->modelClass;
+
+        return $this->andWhere($modelClass::tableName() . '.visible');
+    }
+
+    public function withParents() {
+        return $this->with('pagesPage.pagesPage.pagesPage.pagesPage.pagesPage');
+    }
 }
