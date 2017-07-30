@@ -19,6 +19,52 @@ use yii\web\ErrorAction;
 
 class FrontendController extends Controller
 {
+    public function behaviors()
+    {
+        $sql = Page::find()
+            ->where('visible')
+            ->select('updated')
+            ->orderBy('updated DESC')
+            ->limit(1)
+            ->createCommand()->rawSql;
+        $time = $this->getModificationTime($sql);
+
+        return [
+            'httpCache' => [
+                'class' => 'yii\filters\HttpCache',
+                'only' => ['index'],
+                'lastModified' => function () use ($time) {
+                    return $time;
+                },
+                'etagSeed' => function () use ($time) {
+                    return $time;
+                },
+            ],
+            'pageCache' => [
+                'class' => 'yii\filters\PageCache',
+                'only' => ['index'],
+                'duration' => 0,
+                'dependency' => [
+                    'class' => 'yii\caching\TagDependency',
+                    'tags' => [
+                        'pages',
+                        $time,
+                    ],
+                ],
+                'variations' => [
+                    \Yii::$app->request->url,
+                ]
+            ],
+        ];
+    }
+
+    public function getModificationTime($sql) {
+        $time = \yii::$app->db->createCommand($sql)->queryScalar();
+        $time = \DateTime::createFromFormat('Y-m-d H:i:s', $time)->getTimestamp();
+
+        return $time;
+    }
+
     public function actions()
     {
         return ArrayHelper::merge(parent::actions(), [

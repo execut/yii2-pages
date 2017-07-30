@@ -66,9 +66,24 @@ class Page extends BasePage
         );
     }
 
+    protected static $pagesCache = [];
+    public static function getCache($id) {
+        if (isset(self::$pagesCache[$id])) {
+            return self::$pagesCache[$id];
+        }
+    }
+
+    public static function setCache($model) {
+        return self::$pagesCache[$model->id] = $model;
+    }
+
     public static function getNavigationPages($id) {
         $result = [];
-        $page = self::find()->andWhere(['id' => $id])->withParents()->isVisible()->one();
+        if (!($page = self::getCache($id))) {
+            $page = self::find()->andWhere(['id' => $id])->withParents()->isVisible()->one();
+            self::setCache($page);
+        }
+
         if (!$page) {
             return [];
         }
