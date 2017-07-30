@@ -5,9 +5,8 @@
 namespace execut\pages\crudFields;
 use execut\crudFields\fields\HasOneSelect2;
 
-class Plugin
+class Plugin extends \execut\crudFields\Plugin
 {
-    public $owner = null;
     public function getFields() {
         return [
             [
