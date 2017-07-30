@@ -17,9 +17,9 @@ class Frontend extends Bootstrap
     public function getDefaultDepends()
     {
         return [
-            'components' => [
+            'bootstrap' => [
                 'navigation' => [
-                    'class' => \execut\navigation\Component::class,
+                    'class' => \execut\navigation\Bootstrap::class,
                 ],
             ],
             'modules' => [
