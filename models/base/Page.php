@@ -52,7 +52,7 @@ abstract class Page extends \yii\db\ActiveRecord
             [['visible'], 'boolean'],
             [['pages_page_id'], 'default', 'value' => null],
             [['pages_page_id'], 'integer'],
-            [['name', 'title', 'description', 'keywords', 'header', 'text', 'alias'], 'string', 'max' => 255],
+            [['name', 'title', 'description', 'header', 'alias'], 'string', 'max' => 255],
             [['pages_page_id'], 'exist', 'skipOnError' => true, 'targetClass' => \execut\pages\models\Page::className(), 'targetAttribute' => ['pages_page_id' => 'id']]
         ];
     }
