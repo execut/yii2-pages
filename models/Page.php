@@ -11,6 +11,7 @@ use execut\crudFields\fields\Editor;
 use execut\crudFields\fields\HasOneRelation;
 use execut\crudFields\fields\HasOneSelect2;
 use execut\crudFields\fields\Id;
+use execut\crudFields\ModelsHelperTrait;
 use \execut\pages\models\base\Page as BasePage;
 use yii\helpers\ArrayHelper;
 
@@ -19,7 +20,7 @@ use yii\helpers\ArrayHelper;
  */
 class Page extends BasePage
 {
-    use BehaviorStub;
+    use BehaviorStub, ModelsHelperTrait;
     public function behaviors()
     {
         return ArrayHelper::merge(
@@ -28,11 +29,7 @@ class Page extends BasePage
                 'fields' => [
                     'class' => Behavior::class,
                     'plugins' => \yii::$app->getModule('pages')->getPageFieldsPlugins(),
-                    'fields' => [
-                        [
-                            'class' => Id::class,
-                            'attribute' => 'id',
-                        ],
+                    'fields' => $this->getStandardFields(null, [
                         [
                             'class' => HasOneSelect2::class,
                             'attribute' => 'pages_page_id',
@@ -41,25 +38,9 @@ class Page extends BasePage
                             ],
                         ],
                         [
-                            'required' => true,
-                            'attribute' => 'name',
-                        ],
-                        [
-                            'class' => Boolean::class,
-                            'attribute' => 'visible',
-                        ],
-                        [
-                            'class' => Date::class,
-                            'attribute' => 'created',
-                        ],
-                        [
-                            'class' => Date::class,
-                            'attribute' => 'updated',
-                        ],
-                        [
                             'class' => Action::class,
                         ],
-                    ]
+                    ])
                 ],
                 # custom behaviors
             ]

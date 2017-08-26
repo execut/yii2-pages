@@ -16,6 +16,7 @@ class Backend extends Frontend
      */
     public function bootstrap($app)
     {
+        parent::bootstrap($app);
         $this->bootstrapNavigation($app);
     }
 

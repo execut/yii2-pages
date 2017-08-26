@@ -13,6 +13,7 @@ use execut\crud\fields\Field;
 use execut\pages\action\adapter\ShowPage;
 use execut\pages\models\Page;
 use execut\navigation\Behavior;
+use yii\db\Expression;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\ErrorAction;
@@ -21,10 +22,14 @@ class FrontendController extends Controller
 {
     public function behaviors()
     {
+        if (YII_ENV === 'dev') {
+            return [];
+        }
+
         $sql = Page::find()
             ->where('visible')
-            ->select('updated')
-            ->orderBy('updated DESC')
+            ->select(new Expression('COALESCE(updated,created)'))
+            ->orderBy(new Expression('COALESCE(updated,created) DESC'))
             ->limit(1)
             ->createCommand()->rawSql;
         $time = $this->getModificationTime($sql);
