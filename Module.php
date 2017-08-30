@@ -39,7 +39,7 @@ class Module extends \yii\base\Module implements Plugin
             ->select(['key' => new Expression('COALESCE(updated,created)')])
             ->orderBy(new Expression('COALESCE(updated,created) DESC'))
             ->limit(1);
-        $otherQueries = \yii::$app->getModule('pages')->getCacheKeyQueries();
+        $otherQueries = $this->getCacheKeyQueries();
         foreach ($otherQueries as $otherQuery) {
             $query->union($otherQuery);
         }
@@ -49,6 +49,8 @@ class Module extends \yii\base\Module implements Plugin
                 ->rawSql . ') ORDER BY key DESC LIMIT 1';
 
         $time = $this->getModificationTime($sql);
+
+        return $time;
     }
 
     public function getModificationTime($sql) {
