@@ -12,20 +12,12 @@ use execut\pages\navigation\Configurator;
 use execut\yii\Bootstrap;
 use yii\base\BootstrapInterface;
 
-class Frontend extends Bootstrap
+class Frontend extends Common
 {
     public function getDefaultDepends()
     {
         return [
-            'bootstrap' => [
-                'navigation' => [
-                    'class' => \execut\navigation\Bootstrap::class,
-                ],
-            ],
             'modules' => [
-                'pages' => [
-                    'class' => Module::class,
-                ],
                 'sitemap' => [
                     'class' => \assayerpro\sitemap\Module::className(),
                     'components' => [

@@ -26,13 +26,7 @@ class FrontendController extends Controller
             return [];
         }
 
-        $sql = Page::find()
-            ->where('visible')
-            ->select(new Expression('COALESCE(updated,created)'))
-            ->orderBy(new Expression('COALESCE(updated,created) DESC'))
-            ->limit(1)
-            ->createCommand()->rawSql;
-        $time = $this->getModificationTime($sql);
+        $time = \yii::$app->getModule('pages')->getLastModificationTime();
 
         return [
             'httpCache' => [
@@ -57,17 +51,10 @@ class FrontendController extends Controller
                     ],
                 ],
                 'variations' => [
-                    \Yii::$app->request->url,
+                    \Yii::$app->request->url . $time,
                 ]
             ],
         ];
-    }
-
-    public function getModificationTime($sql) {
-        $time = \yii::$app->db->createCommand($sql)->queryScalar();
-        $time = \DateTime::createFromFormat('Y-m-d H:i:s', $time)->getTimestamp();
-
-        return $time;
     }
 
     public function actions()

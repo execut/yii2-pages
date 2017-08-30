@@ -29,7 +29,9 @@ class BackendController extends Controller
     {
         $crud = new Crud([
             'modelClass' => Page::class,
-            'modelName' => 'Pages',
+            'module' => 'pages',
+            'moduleName' => 'Pages',
+            'modelName' => Page::MODEL_NAME,
         ]);
         return $crud->actions();
     }
