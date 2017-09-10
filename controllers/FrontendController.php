@@ -22,9 +22,9 @@ class FrontendController extends Controller
 {
     public function behaviors()
     {
-//        if (YII_ENV === 'dev') {
-//            return [];
-//        }
+        if (YII_ENV === 'dev') {
+            return [];
+        }
 
         $time = \yii::$app->getModule('pages')->getLastModificationTime();
 

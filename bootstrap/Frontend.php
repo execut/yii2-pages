@@ -11,12 +11,13 @@ use execut\pages\Module;
 use execut\pages\navigation\Configurator;
 use execut\yii\Bootstrap;
 use yii\base\BootstrapInterface;
+use yii\helpers\ArrayHelper;
 
 class Frontend extends Common
 {
     public function getDefaultDepends()
     {
-        return [
+        return ArrayHelper::merge(parent::getDefaultDepends(), [
             'modules' => [
                 'sitemap' => [
                     'class' => \assayerpro\sitemap\Module::className(),
@@ -53,7 +54,7 @@ class Frontend extends Common
                     ],
                 ],
             ],
-        ];
+        ]);
     }
     /**
      * @param \yii\base\Application $app

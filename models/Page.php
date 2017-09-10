@@ -96,12 +96,18 @@ class Page extends BasePage
         return array_reverse($result);
     }
 
+    /**
+     * @TODO Very bad
+     *
+     * @param $navigationPage
+     * @param $pageModel
+     */
     public static function initCurrentNavigationPage($navigationPage, $pageModel) {
         \yii::$app->getModule('pages')->initCurrentNavigationPage($navigationPage, $pageModel);
     }
 
     public function getNavigationPage() {
-        $page = new \execut\navigation\Page();
+        $page = new \execut\pages\navigation\Page();
         $checkedAttributes = [
             'name',
             'keywords',
@@ -120,6 +126,7 @@ class Page extends BasePage
         }
 
         $page->setTime(strtotime($this->getLastTime()));
+        $page->model = $this;
 
         return $page;
     }
