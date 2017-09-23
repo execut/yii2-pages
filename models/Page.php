@@ -31,12 +31,6 @@ class Page extends BasePage
         return ArrayHelper::merge(
             parent::behaviors(),
             [
-                'seoKeywords' => [
-                    'class' => SaveRelationsBehavior::class,
-                    'relations' => [
-                        'seoKeywords'
-                    ],
-                ],
                 'fields' => [
                     'class' => Behavior::class,
                     'plugins' => \yii::$app->getModule('pages')->getPageFieldsPlugins(),
