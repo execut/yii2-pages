@@ -6,6 +6,7 @@ namespace execut\pages;
 
 use execut\dependencies\PluginBehavior;
 use execut\navigation\Page;
+use yii\db\ActiveQuery;
 use yii\db\Expression;
 use yii\i18n\PhpMessageSource;
 
@@ -58,5 +59,10 @@ class Module extends \yii\base\Module implements Plugin
         $time = \DateTime::createFromFormat('Y-m-d H:i:s', $time)->getTimestamp();
 
         return $time;
+    }
+
+    public function applyCurrentPageScopes(ActiveQuery $q)
+    {
+        return $this->getPluginsResults(__FUNCTION__, false, [$q]);
     }
 }

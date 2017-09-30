@@ -40,6 +40,39 @@ class PageQuery extends \yii\db\ActiveQuery
     }
 
     public function withParents() {
-        return $this->with('pagesPage.pagesPage.pagesPage.pagesPage.pagesPage');
+        return $this->generateWith($this);
+    }
+
+    protected function generateWith($q, $level = 0) {
+        if ($level < 5) {
+            if ($level > 0) {
+                $q->forLinks();
+            }
+
+            return $q->with([
+                'pagesPage' => function ($q) use ($level) {
+                    $this->generateWith($q,$level + 1);
+                }
+            ]);
+        }
+    }
+
+    public function forLinks() {
+        $excludedColumns = [
+            'title',
+            'text',
+            'keywords',
+            'header',
+        ];
+        $modelClass = $this->modelClass;
+        $columns = $modelClass::getTableSchema()->columns;
+        $select = [];
+        foreach ($columns as $column) {
+            if (!in_array($column->name, $excludedColumns)) {
+                $select[] = $column->name;
+            }
+        }
+
+        return $this->select($select);
     }
 }

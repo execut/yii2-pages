@@ -71,6 +71,7 @@ class Page extends BasePage
         $result = [];
         if (!($page = self::getCache($id))) {
             $query = self::find()->andWhere(['id' => $id])->withParents()->isVisible();
+            \yii::$app->getModule('pages')->applyCurrentPageScopes($query);
             $page = $query->one();
             self::setCache($page);
         }
@@ -128,7 +129,7 @@ class Page extends BasePage
     public function getUrl() {
         return [
             '/pages/frontend',
-            'id' => $this->id,
+            'alias' => $this->alias,
         ];
     }
 
