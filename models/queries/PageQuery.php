@@ -62,7 +62,6 @@ class PageQuery extends \yii\db\ActiveQuery
             'title',
             'text',
             'keywords',
-            'header',
         ];
         $modelClass = $this->modelClass;
         $columns = $modelClass::getTableSchema()->columns;
