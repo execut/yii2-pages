@@ -4,11 +4,13 @@
 
 namespace execut\pages\bootstrap;
 
+use execut\pages\Module;
 use execut\yii\Bootstrap;
+use yii\i18n\PhpMessageSource;
 
 class Common extends Bootstrap
 {
-
+    protected $isBootstrapI18n = true;
     public function getDefaultDepends()
     {
         return [

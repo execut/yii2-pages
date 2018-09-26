@@ -33,14 +33,6 @@ class Backend extends Common
     {
         parent::bootstrap($app);
         $this->bootstrapNavigation($app);
-        $this->initI18n();
-    }
-
-    public function initI18n() {
-        \yii::$app->i18n->translations['execut/pages'] = [
-            'class' => PhpMessageSource::class,
-            'basePath' => '@vendor/execut/pages/messages',
-        ];
     }
 
     /**

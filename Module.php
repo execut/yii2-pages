@@ -12,6 +12,8 @@ use yii\i18n\PhpMessageSource;
 
 class Module extends \yii\base\Module implements Plugin
 {
+    public $indexViewPath = null;
+    public $adminRole = '@';
     public function behaviors()
     {
         return [
@@ -23,7 +25,12 @@ class Module extends \yii\base\Module implements Plugin
     }
 
     public function getPageFieldsPlugins() {
-        return $this->getPluginsResults(__FUNCTION__);
+        $results = $this->getPluginsResults(__FUNCTION__);
+        if (!$results) {
+            $results = [];
+        }
+
+        return $results;
     }
 
     public function getCacheKeyQueries() {

@@ -8,7 +8,7 @@ namespace execut\pages\bootstrap;
 use execut\pages\controllers\ConsoleController;
 use execut\yii\Bootstrap;
 
-class Console extends Bootstrap
+class Console extends Common
 {
     public function bootstrap($app)
     {

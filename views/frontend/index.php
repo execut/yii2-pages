@@ -1,3 +1,7 @@
 <?php
-echo \execut\navigation\widgets\Text::widget();
-echo \execut\navigation\widgets\Time::widget();
+echo \execut\yii\OnceWidget::widget([
+    'widget' => \execut\navigation\widgets\Text::class,
+]);
+echo \execut\yii\OnceWidget::widget([
+    'widget' => \execut\navigation\widgets\Time::class,
+]);
