@@ -10,6 +10,7 @@ use execut\navigation\page\Home;
 
 use execut\navigation\page\NotFound;
 use execut\pages\models\Page;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 
 class Configurator implements \execut\navigation\Configurator
@@ -28,15 +29,15 @@ class Configurator implements \execut\navigation\Configurator
             return;
         }
         $pages = [
-            [
-                'class' => Home::class
-            ],
+//            [
+//                'class' => Home::class
+//            ],
         ];
         $action = $controller->action;
         if ($action->id === 'error') {
-            $pages[] = [
+            $pages[] = ArrayHelper::merge([
                 'class' => NotFound::class,
-            ];
+            ], \yii::$app->getModule('pages')->notFoundPage);
         } else {
             $pageId = \yii::$app->request->getQueryParam('id');
             if ($pageId) {

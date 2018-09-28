@@ -20,7 +20,11 @@ class FrontendController extends Controller
             return [];
         }
 
-        $time = \yii::$app->getModule('pages')->getLastModificationTime();
+        if (!$this->module->isCacheEnabled) {
+            return [];
+        }
+
+        $time = $this->module->getLastModificationTime();
 
         return [
             'httpCache' => [

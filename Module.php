@@ -14,6 +14,8 @@ class Module extends \yii\base\Module implements Plugin
 {
     public $indexViewPath = null;
     public $adminRole = '@';
+    public $isCacheEnabled = true;
+    public $notFoundPage = [];
     public function behaviors()
     {
         return [
