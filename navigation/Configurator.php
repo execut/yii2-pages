@@ -29,9 +29,9 @@ class Configurator implements \execut\navigation\Configurator
             return;
         }
         $pages = [
-//            [
-//                'class' => Home::class
-//            ],
+            [
+                'class' => Home::class
+            ],
         ];
         $action = $controller->action;
         if ($action->id === 'error') {
