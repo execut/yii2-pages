@@ -10,7 +10,9 @@ namespace execut\pages\plugin;
 
 
 use execut\navigation\Page;
+use execut\navigation\page\NotFound;
 use execut\pages\Plugin;
+use yii\base\Exception;
 use yii\db\ActiveQuery;
 
 class Sitemap implements Plugin
@@ -26,4 +28,5 @@ class Sitemap implements Plugin
     public function getCacheKeyQueries() {}
     public function initCurrentNavigationPage(Page $navigationPage, \execut\pages\models\Page $pageModel) {}
     public function applyCurrentPageScopes(ActiveQuery $q) {}
+    public function configureErrorPage(NotFound $notFoundPage, Exception $e) {}
 }

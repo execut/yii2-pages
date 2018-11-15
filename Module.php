@@ -6,6 +6,8 @@ namespace execut\pages;
 
 use execut\dependencies\PluginBehavior;
 use execut\navigation\Page;
+use execut\navigation\page\NotFound;
+use yii\base\Exception;
 use yii\db\ActiveQuery;
 use yii\db\Expression;
 use yii\i18n\PhpMessageSource;
@@ -73,5 +75,17 @@ class Module extends \yii\base\Module implements Plugin
     public function applyCurrentPageScopes(ActiveQuery $q)
     {
         return $this->getPluginsResults(__FUNCTION__, false, [$q]);
+    }
+
+    public function configureErrorPage(NotFound $notFoundPage, Exception $e)
+    {
+        foreach ($this->getPlugins() as $plugin) {
+            $result = $plugin->configureErrorPage($notFoundPage, $e);
+            if ($result) {
+                $notFoundPage = $result;
+            }
+        }
+
+        return $notFoundPage;
     }
 }

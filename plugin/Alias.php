@@ -5,6 +5,8 @@
 namespace execut\pages\plugin;
 
 use execut\navigation\Page;
+use execut\navigation\page\NotFound;
+use yii\base\Exception;
 use yii\db\ActiveQuery;
 
 class Alias implements \execut\pages\Plugin
@@ -27,5 +29,9 @@ class Alias implements \execut\pages\Plugin
     public function applyCurrentPageScopes(ActiveQuery $q)
     {
         return $q;
+    }
+
+    public function configureErrorPage(NotFound $notFoundPage, Exception $e)
+    {
     }
 }

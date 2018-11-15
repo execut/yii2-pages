@@ -3,11 +3,13 @@
  */
 namespace execut\pages\plugin;
 use execut\navigation\Page;
+use execut\navigation\page\NotFound;
 use execut\pages\models\FrontendPage;
 use execut\pages\Plugin;
 use execut\seo\models\Keyword;
 use execut\cms\seo\models\KeywordVsPage;
 use execut\seo\TextReplacer;
+use yii\base\Exception;
 use yii\base\Module;
 use yii\db\ActiveQuery;
 use yii\db\Expression;
@@ -205,5 +207,9 @@ class Seo implements Plugin
     public function applyCurrentPageScopes(ActiveQuery $q)
     {
         return $q;
+    }
+
+    public function configureErrorPage(NotFound $notFoundPage, Exception $e)
+    {
     }
 }
