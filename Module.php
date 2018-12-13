@@ -79,7 +79,7 @@ class Module extends \yii\base\Module implements Plugin
 
     public function configureErrorPage(NotFound $notFoundPage, Exception $e)
     {
-        foreach ($this->getPlugins() as $plugin) {
+        foreach ($this->getPlugins() as $key => $plugin) {
             $result = $plugin->configureErrorPage($notFoundPage, $e);
             if ($result) {
                 $notFoundPage = $result;
