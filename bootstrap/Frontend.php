@@ -19,6 +19,7 @@ class Frontend extends Common
     public function getDefaultDepends()
     {
         return ArrayHelper::merge(parent::getDefaultDepends(), [
+            'bootstrap' => ['pages'],
 //            'modules' => [
 //                'sitemap' => [
 //                    'class' => \assayerpro\sitemap\Module::className(),

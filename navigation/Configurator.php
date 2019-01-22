@@ -37,11 +37,14 @@ class Configurator implements \execut\navigation\Configurator
         $action = $controller->action;
         if ($action->id === 'error') {
             $e = $this->findException();
-            $pages[] = \yii::$app->getModule('pages')->configureErrorPage(\Yii::createObject(ArrayHelper::merge([
+            $pagesModule = \yii::$app->getModule('pages');
+            $errorPage = \Yii::createObject(ArrayHelper::merge([
                 'class' => NotFound::class,
                 'text' => $e->getMessage(),
                 'code' => $e->getCode(),
-            ], \yii::$app->getModule('pages')->notFoundPage)), $e);
+            ], $pagesModule->notFoundPage));
+
+            $pages[] = $pagesModule->configureErrorPage($errorPage, $e);
         } else {
             $pageId = \yii::$app->request->getQueryParam('id');
             if ($pageId) {

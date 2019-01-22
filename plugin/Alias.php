@@ -31,7 +31,7 @@ class Alias implements \execut\pages\Plugin
         return $q;
     }
 
-    public function configureErrorPage(NotFound $notFoundPage, Exception $e)
+    public function configureErrorPage(NotFound $notFoundPage, \Exception $e)
     {
     }
 }
