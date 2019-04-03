@@ -68,9 +68,6 @@ class Frontend extends Common
         $app->getErrorHandler()->errorAction = 'pages/frontend/error';
         $app->urlManager->enablePrettyUrl = true;
         $navigation = \yii::$app->navigation;
-        $navigation->addConfigurator([
-            'class' => HomePage::class,
-        ]);
 
         $navigation->addConfigurator([
             'class' => Configurator::class,
