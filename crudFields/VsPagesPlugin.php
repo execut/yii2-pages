@@ -19,6 +19,7 @@ class VsPagesPlugin extends \execut\crudFields\Plugin
                 'class' => HasManySelect2::class,
                 'attribute' => 'pages',
                 'relation' => 'pages',
+                'module' => 'pages',
                 'url' => [
                     '/pages/backend'
                 ],

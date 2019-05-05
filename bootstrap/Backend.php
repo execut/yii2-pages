@@ -40,7 +40,8 @@ class Backend extends Common
      */
     protected function bootstrapNavigation($app)
     {
-        if (!$app->user->can($app->getModule('pages')->adminRole)) {
+        $module = $app->getModule('pages');
+        if (!(!$app->user->isGuest && $module->adminRole === '@') && !$app->user->can($module->adminRole)) {
             return;
         }
 

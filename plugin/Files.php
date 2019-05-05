@@ -3,6 +3,7 @@
  */
 namespace execut\pages\plugin;
 use execut\navigation\Page;
+use execut\navigation\page\NotFound;
 use execut\pages\models\FrontendPage;
 use execut\pages\Plugin;
 use execut\seo\models\Keyword;
@@ -58,7 +59,7 @@ class Files implements Plugin
             ];
 
             $image = Html::a(Html::img([
-                '/images/frontend',
+                '/files/frontend',
                 'alias' => $filesFile->alias,
                 'extension' => $filesFile->extension,
                 'dataAttribute' => 'size_m',
@@ -71,5 +72,7 @@ class Files implements Plugin
         }
 
         $navigationPage->setText($text);
+    }
+    public function configureErrorPage(NotFound $notFoundPage, \Exception $e) {
     }
 }

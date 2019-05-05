@@ -13,7 +13,7 @@ use yii\i18n\PhpMessageSource;
 
 class Module extends \yii\base\Module implements Plugin
 {
-    public $indexViewPath = null;
+    public $indexViewPath = 'index';
     public $adminRole = '@';
     public $isCacheEnabled = true;
     public $notFoundPage = [];

@@ -1,4 +1,5 @@
 <?php
+namespace execut\pages\migrations;
 
 use execut\yii\migration\Migration;
 

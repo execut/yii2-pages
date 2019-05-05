@@ -7,7 +7,7 @@ use execut\navigation\page\NotFound;
 use execut\pages\models\FrontendPage;
 use execut\pages\Plugin;
 use execut\seo\models\Keyword;
-use execut\cms\seo\models\KeywordVsPage;
+use execut\seo\plugin\pages\models\KeywordVsPage;
 use execut\seo\TextReplacer;
 use yii\base\Exception;
 use yii\base\Module;
@@ -28,7 +28,7 @@ class Seo implements Plugin
             [
                 'class' => \execut\seo\crudFields\Keywords::class,
                 'linkAttribute' => 'pages_page_id',
-                'vsModelClass' => \execut\cms\seo\models\KeywordVsPage::class,
+                'vsModelClass' => KeywordVsPage::class,
             ],
         ];
     }
@@ -105,7 +105,7 @@ class Seo implements Plugin
 
         if ($img = $this->findBestImage($keywordModel->filesFiles, $pageModel, $keywordModel->name)) {
             $textReplacer->img = Url::to([
-                '/images/frontend',
+                '/files/frontend',
                 'alias' => $img->alias,
                 'extension' => $img->extension,
                 'dataAttribute' => 'size_sm',

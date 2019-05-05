@@ -46,7 +46,7 @@ class Page extends ActiveRecord
                     ])
                 ],
                 [
-                    'class' => TimestampBehavior::className(),
+                    'class' => TimestampBehavior::class,
                     'createdAtAttribute' => 'created',
                     'updatedAtAttribute' => 'updated',
                     'value' => new Expression('NOW()'),
@@ -154,7 +154,7 @@ class Page extends ActiveRecord
      */
     public function getPagesPage()
     {
-        return $this->hasOne(\execut\pages\models\Page::className(), ['id' => 'pages_page_id']);
+        return $this->hasOne(\execut\pages\models\Page::class, ['id' => 'pages_page_id']);
     }
 
     /**
@@ -162,7 +162,7 @@ class Page extends ActiveRecord
      */
     public function getPages()
     {
-        return $this->hasMany(\execut\pages\models\Page::className(), ['pages_page_id' => 'id']);
+        return $this->hasMany(\execut\pages\models\Page::class, ['pages_page_id' => 'id']);
     }
 
 
