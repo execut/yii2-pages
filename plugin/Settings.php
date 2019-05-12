@@ -15,7 +15,7 @@ use execut\pages\Plugin;
 use yii\base\Exception;
 use yii\db\ActiveQuery;
 
-class Pages implements Plugin
+class Settings implements Plugin
 {
     public $exceptions = [];
     public function getPageFieldsPlugins() {}
