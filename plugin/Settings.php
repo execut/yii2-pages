@@ -6,7 +6,7 @@
  * Time: 2:17 PM
  */
 
-namespace execut\pages\plugins;
+namespace execut\pages\plugin;
 
 
 use execut\navigation\Page;
