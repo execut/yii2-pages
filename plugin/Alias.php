@@ -15,6 +15,7 @@ class Alias implements \execut\pages\Plugin
         return [
             [
                 'class' => \execut\alias\crudFields\Plugin::class,
+                'isRequired' => false,
             ],
         ];
     }
