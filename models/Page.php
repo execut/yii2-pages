@@ -67,6 +67,10 @@ class Page extends ActiveRecord
         return self::$pagesCache[$model->id] = $model;
     }
 
+    public function isHome() {
+        return empty($this->alias);
+    }
+
     public static function getNavigationPages($id) {
         $result = [];
         if (!($page = self::getCache($id))) {
