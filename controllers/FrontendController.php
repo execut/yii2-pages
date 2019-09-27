@@ -68,7 +68,7 @@ class FrontendController extends Controller
 
     public function actions()
     {
-        if (\yii::$app->request->url === '/') {
+        if (\yii::$app->request->getPathInfo() === '') {
             $view = $this->module->indexViewPath;
         } else {
             $view = 'index';
