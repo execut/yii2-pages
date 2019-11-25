@@ -97,7 +97,7 @@ Name|Description
 Name | Page name
 Pages Page | Parent page
 
-![Pages list](https://raw.githubusercontent.com/execut/yii2-pages/master/docs/form.jpg)
+![Add form](https://raw.githubusercontent.com/execut/yii2-pages/master/docs/form.jpg)
 
 On frontend page is available by parameter ?id=# on main page or /pages/frontend?id=#, where # - database page identify
 

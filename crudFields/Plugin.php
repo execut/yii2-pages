@@ -24,6 +24,7 @@ class Plugin extends \execut\crudFields\Plugin
             [
                 'class' => HasOneSelect2::class,
                 'attribute' => 'pages_page_id',
+                'module' => 'pages',
                 'relation' => 'pagesPage',
                 'url' => [
                     '/pages/backend'
