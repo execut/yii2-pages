@@ -12,6 +12,7 @@ use execut\pages\TestCase;
 class ShowPageTest extends TestCase
 {
     public function testRun() {
+        $this->mockWebApplication();
         $adapter = new ShowPage([
 //            'modelClass' => Model::class,
             'actionParams' => new Params([
@@ -21,7 +22,7 @@ class ShowPageTest extends TestCase
             ]),
         ]);
         $response = $adapter->run();
-//        $this->assertArrayHasKey('model', $response->content);
+        $this->assertIsArray($response->content);
 //        $this->assertInstanceOf(Model::class, $response->content['model']);
 //        $this->assertEquals(2, Model::$id);
     }

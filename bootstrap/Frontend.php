@@ -22,14 +22,14 @@ class Frontend extends Common
             'bootstrap' => ['pages'],
 //            'modules' => [
 //                'sitemap' => [
-//                    'class' => \assayerpro\sitemap\Module::className(),
+//                    'class' => \assayerpro\sitemap\Module::class,
 //                    'components' => [
 //                        'generator' => [
 //                            'class' => 'assayerpro\sitemap\Generator',
 //                            'models' => [
 //                                // or configuration for creating a behavior
 //                                [
-//                                    'class' => Page::className(),
+//                                    'class' => Page::class,
 //                                    'behaviors' => [
 //                                        'sitemap' => [
 //                                            'class' => '\assayerpro\sitemap\behaviors\SitemapBehavior',
