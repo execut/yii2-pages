@@ -2,6 +2,7 @@
 namespace execut\pages\migrations;
 
 use execut\yii\migration\Migration;
+use yii\db\pgsql\Schema;
 
 class m170401_190746_createBaseTable extends Migration
 {
@@ -9,7 +10,7 @@ class m170401_190746_createBaseTable extends Migration
     {
         $i->createTable('pages_pages', $this->defaultColumns([
             'name' => $this->string()->notNull(),
-            'visible' => $this->boolean()->notNull()->defaultValue('true'),
+            'visible' => $this->boolean()->notNull()->defaultValue(true),
         ]));
         $pages = $i->table('pages_pages');
         $pages->addForeignColumn('pages_pages');
