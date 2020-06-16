@@ -16,9 +16,9 @@ namespace execut\pages;
  *
  * @SuppressWarnings(PHPMD)
 */
-class UnitTester extends \Codeception\Actor
+class CodeGuy extends \Codeception\Actor
 {
-    use _generated\UnitTesterActions;
+    use _generated\CodeGuyActions;
 
     /**
      * Define custom actions here

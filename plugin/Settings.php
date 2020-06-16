@@ -44,4 +44,9 @@ class Settings implements Plugin
             $page->text = $text;
         }
     }
+
+    public function getPageAddressAdapters(): array
+    {
+        return [];
+    }
 }

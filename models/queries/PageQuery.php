@@ -2,6 +2,8 @@
 
 namespace execut\pages\models\queries;
 
+use execut\pages\models\Page;
+
 /**
  * This is the ActiveQuery class for [[\execut\pages\models\Page]].
  *

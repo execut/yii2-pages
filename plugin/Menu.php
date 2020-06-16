@@ -45,4 +45,9 @@ class Menu implements Plugin
 
    public function configureErrorPage(NotFound $notFoundPage, \Exception $e) {
    }
+
+    public function getPageAddressAdapters(): array
+    {
+        return [];
+    }
 }

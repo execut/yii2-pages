@@ -212,4 +212,9 @@ class Seo implements Plugin
     public function configureErrorPage(NotFound $notFoundPage, \Exception $e)
     {
     }
+
+    public function getPageAddressAdapters(): array
+    {
+        return [];
+    }
 }

@@ -8,6 +8,7 @@ use execut\actions\HelpModule;
 use execut\dependencies\PluginBehavior;
 use execut\navigation\Page;
 use execut\navigation\page\NotFound;
+use execut\pages\crudFields\pageAddress\Adapter;
 use yii\db\ActiveQuery;
 use yii\db\Expression;
 use yii\i18n\PhpMessageSource;
@@ -91,5 +92,9 @@ class Module extends \yii\base\Module implements Plugin, HelpModule
 
     public function getHelpUrl() {
         return 'https://github.com/execut/yii2-pages/wiki';
+    }
+
+    public function getPageAddressAdapters():array {
+        return $this->getPluginsResults(__FUNCTION__);
     }
 }

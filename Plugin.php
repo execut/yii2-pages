@@ -7,6 +7,7 @@ namespace execut\pages;
 
 use execut\navigation\Page;
 use execut\navigation\page\NotFound;
+use execut\pages\crudFields\pageAddress\Adapter;
 use yii\db\ActiveQuery;
 use yii\db\Query;
 
@@ -35,4 +36,5 @@ interface Plugin
     public function initCurrentNavigationPage(Page $navigationPage, \execut\pages\models\Page $pageModel);
     public function applyCurrentPageScopes(ActiveQuery $q);
     public function configureErrorPage(NotFound $notFoundPage, \Exception $e);
+    public function getPageAddressAdapters():array;
 }

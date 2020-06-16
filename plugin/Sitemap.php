@@ -29,4 +29,9 @@ class Sitemap implements Plugin
     public function initCurrentNavigationPage(Page $navigationPage, \execut\pages\models\Page $pageModel) {}
     public function applyCurrentPageScopes(ActiveQuery $q) {}
     public function configureErrorPage(NotFound $notFoundPage, \Exception $e) {}
+
+    public function getPageAddressAdapters(): array
+    {
+        return [];
+    }
 }

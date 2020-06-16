@@ -5,14 +5,14 @@
 namespace execut\pages\action\adapter;
 
 
+use Codeception\Test\Unit;
 use execut\actions\action\Params;
 use execut\pages\models\Page;
 use execut\pages\TestCase;
 
-class ShowPageTest extends TestCase
+class ShowPageTest extends Unit
 {
     public function testRun() {
-        $this->mockWebApplication();
         $adapter = new ShowPage([
 //            'modelClass' => Model::class,
             'actionParams' => new Params([
