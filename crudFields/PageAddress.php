@@ -12,7 +12,7 @@ use yii\helpers\Html;
 
 class PageAddress extends Field
 {
-    protected function _applyScopes(ActiveQuery $query)
+    protected function applyFieldScopes(ActiveQuery $query)
     {
         $address = $this->getValue();
         if (!empty($address)) {
