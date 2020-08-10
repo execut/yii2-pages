@@ -6,13 +6,13 @@ namespace execut\pages\crudFields;
 
 use execut\crudFields\fields\Field;
 use execut\pages\crudFields\pageAddress\Adapter;
-use yii\db\ActiveQuery;
+use yii\db\ActiveQueryInterface;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 class PageAddress extends Field
 {
-    protected function applyFieldScopes(ActiveQuery $query)
+    protected function applyFieldScopes(ActiveQueryInterface $query)
     {
         $address = $this->getValue();
         if (!empty($address)) {
