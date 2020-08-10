@@ -3,7 +3,7 @@
   "description": "Yii2 module for pages managing with CRUD",
   "keywords": ["yii2 pages"],
   "homepage": "https://github.com/execut/yii2-pages",
-  "type": "library",
+  "type": "yii2-extension",
   "license": "Apache-2.0",
   "support": {
     "issues": "https://github.com/execut/yii2-pages/issues?state=open",
