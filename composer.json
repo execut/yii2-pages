@@ -21,7 +21,8 @@
     "execut/yii2-crud": "@dev",
     "execut/yii2-crud-fields": "@dev",
     "execut/yii2-dependencies": "@dev",
-    "execut/yii2-migration": "@dev"
+    "execut/yii2-migration": "@dev",
+    "assayer-pro/yii2-sitemap-module": "*"
   },
   "autoload": {
     "psr-4": {
