@@ -5,6 +5,7 @@ namespace execut\pages\crudFields\pageAddress\adapter;
 
 
 use execut\pages\crudFields\pageAddress\Adapter;
+use execut\pages\models\Page;
 use yii\helpers\Url;
 use yii\web\UrlRule;
 
@@ -41,5 +42,9 @@ class Simple implements Adapter
         }
 
         return '/pages/frontend/index?id=' . $attributes['id'];
+    }
+
+    public function initPageFields(Page $page)
+    {
     }
 }

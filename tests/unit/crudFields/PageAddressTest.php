@@ -53,6 +53,24 @@ class PageAddressTest extends Unit
         $field->applyScopes($query);
     }
 
+    public function testApplyScopesWithNotFoundedPage() {
+        $model = new PageAddressTestPage();
+        $model->setScenario(Field::SCENARIO_GRID);
+        $query = new ActiveQuery('a');
+        $adapter = $this->getMockBuilder(Adapter::class)->getMock();
+        $adapter->method('toArray')
+            ->willReturn(false);
+        $model->adapter = $adapter;
+        $model->address = 'address value';
+
+        $field = new PageAddress([
+            'model' => $model,
+            'attribute' => 'address',
+        ]);
+        $field->applyScopes($query);
+        $this->assertEquals('true=false', $query->where);
+    }
+
     public function testGetColumn() {
         $model = new PageAddressTestPage();
         $model->setScenario(Field::SCENARIO_GRID);

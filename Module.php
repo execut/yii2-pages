@@ -97,4 +97,13 @@ class Module extends \yii\base\Module implements Plugin, HelpModule
     public function getPageAddressAdapters():array {
         return $this->getPluginsResults(__FUNCTION__);
     }
+
+    public function addPlugin($name, Plugin $plugin)
+    {
+        $this->addPlugins([
+            $name => $plugin,
+        ]);
+
+        return $this;
+    }
 }

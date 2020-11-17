@@ -28,12 +28,16 @@ class PageAddress extends Field
         }
 
         $params = $adapter->toArray($address);
+        if ($params === false) {
+            return $query->andWhere('true=false');
+        }
+
         return $query->andWhere($params);
     }
 
-    protected function getRules():array
+    protected function getPreparedRules():array
     {
-        return ArrayHelper::merge(parent::getRules(), [
+        return ArrayHelper::merge(parent::getPreparedRules(), [
             'requiredTypeForPageAddress' => [
                 ['type'], 'required', 'on' => Field::SCENARIO_GRID, 'when' => function () {
                     $attribute = $this->attribute;
